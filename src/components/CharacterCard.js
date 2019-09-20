@@ -1,11 +1,40 @@
 import React from "react";
 import { Card, CardBody, CardTitle, CardText, CardImg } from "reactstrap";
 
+import styled from "styled-components";
+
+const Container = styled.div`
+width: auto;
+display: flex;
+flex-wrap: wrap
+`;
+const RickCard = styled.div`
+background: grey;
+color: black;
+width: 250px;
+max-height: 300px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: space-between;
+margin-bottom: 20px;
+font-size: 1rem;
+padding:2%;
+`;
+
+const RickImg = styled.img`
+  width: 150px;
+  height: 150px;
+  object-fit: scale;
+  flex-shrink: 2;
+`;
+
 const CharacterCard = props => {
   return (
-    <Card>
+   <Container>
+    <RickCard>
       <CardTitle>Character Name: {props.character.name}</CardTitle>
-    <CardImg
+    <RickImg
       src={props.character.image}
       alt="Characters Image"
     />
@@ -14,7 +43,8 @@ const CharacterCard = props => {
       <CardText>Species: {props.character.species}</CardText>
       <CardText>Gender: {props.character.gender}</CardText>
     </CardBody>
-  </Card>
+  </RickCard>
+  </Container>
   )
 }
 export default CharacterCard;

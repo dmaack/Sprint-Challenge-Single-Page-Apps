@@ -1,52 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+
 
 
 // We create a mock list/array named Characters, from which display the list in our component.
 
  
-export default function SearchForm({status}) {
-  const[characters, setCharacters] = useState([]);
-  
-  // searchTerm will save the data from the search input on every occurance of the change event.
-  const [searchTerm, setSearchTerm] = useState("");
-  // searchResults is used to set the search result.
-  const [searchResults, setSearchResults] = useState([]);
+export default function SearchForm(props) {
 
-  useEffect(() => {
-    setCharacters([...characters, status])
-  }, [status]);
-  useEffect(() => {
-    const results = characters.filter(character =>
-      character.includes(searchTerm)
-    );
-    setSearchResults(results);
-  }, [searchTerm]);
-  // The handleChange method takes the event object as the arguement and sets the current value of the form to the searchTerm state using setSearchTerm
+
   const handleChange = event => {
-    // console.log(event.target.value)
-    setSearchTerm(event.target.value);
+   props.callback(event.target.value);
   };
   return (
     <div className="Search">
       <form>
         
-        <label for="name">Search:</label>
+        <label htmlFor="name">Search:</label>
         <input
           id="name"
           type="text"
           name="textfield"
           placeholder="Search"
-          value={searchTerm}
+         
           onChange={handleChange}
         />
       </form>
-      <div className="character-list">
-        <ul>
-          {searchResults.map(character => (
-            <li>{character}</li>
-          ))}
-        </ul>
-      </div>
+     
     </div>
   );
 }

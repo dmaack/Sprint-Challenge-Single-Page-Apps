@@ -13,6 +13,7 @@ width: auto;
 display: flex;
 flex-wrap: wrap;
 justify-content: space-evenly;
+margin-top: 4%;
 `;
 
 const Header = styled.h2`
@@ -21,21 +22,23 @@ const Header = styled.h2`
 
 
 export default function CharacterList() {
-  const [characters, setCharacters] = useState( [] );
+  const[characters, setCharacters] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  // TODO: Add useState to track data from useEffect
 
-  useEffect(() => {
-    const results = characters.filter(character => character.name.toLowerCase().includes(searchTerm));
-    setSearchTerm(results);
-  }, [searchTerm])
+  const handleChange = event => {
+    setSearchTerm(event.target.value);
+  };
 
   useEffect(() => {
     const getCharacters = () => {
       axios 
     .get(`https://rickandmortyapi.com/api/character/`)
     .then(response => {
-      setCharacters(response.data.results);
+      const fullCharaterList = response.data.results;
+      const filteredCharacterList = fullCharaterList.filter(character =>
+        character.name.toLowerCase().includes(searchTerm)
+      );
+      setCharacters(filteredCharacterList);
       console.log(response);
     })
     .catch(error => {
@@ -45,23 +48,33 @@ export default function CharacterList() {
     //  Important: verify the 2nd `useEffect` parameter: the dependancies array!
     }
     getCharacters();
-  }, []);
+    
+  }, [searchTerm]);
 
-  const handleChange = event => {
-   
-    setSearchTerm(event.target.value);
-  };
+ 
   return (
-    <section className="character-list">
+    <>
+    <div className="Search">
+      <input
+        type="text"
+        placeholder="Search"
+        value={searchTerm}
+        onChange={handleChange}
+      />
+    </div>
+
+    <div className="character-list">
+  
       <Header>Rick &amp; Morty Characters</Header>
-      <SearchForm />
+      {/* <SearchForm callback={changeTerm} /> */}
       <Container>
       {characters.map(character => (
         <CharacterCard key={character.id} character={character}/>
       ))}
       </Container>
      
-    </section>
+    </div>
+    </>
   );
 }
 

@@ -3,11 +3,7 @@ import { Card, CardBody, CardTitle, CardText, CardImg } from "reactstrap";
 
 import styled from "styled-components";
 
-const Container = styled.div`
-width: auto;
-display: flex;
-flex-wrap: wrap
-`;
+
 const RickCard = styled.div`
 background: grey;
 color: black;
@@ -31,7 +27,7 @@ const RickImg = styled.img`
 
 const CharacterCard = props => {
   return (
-   <Container>
+  
     <RickCard>
       <CardTitle>Character Name: {props.character.name}</CardTitle>
     <RickImg
@@ -44,7 +40,7 @@ const CharacterCard = props => {
       <CardText>Gender: {props.character.gender}</CardText>
     </CardBody>
   </RickCard>
-  </Container>
+
   )
 }
 export default CharacterCard;

@@ -5,7 +5,7 @@ import axios from 'axios';
 import styled from "styled-components";
 
 import CharacterCard from './CharacterCard';
-import SearchForm from "./SearchForm";
+
 
 
 const Container = styled.div`
@@ -66,7 +66,6 @@ export default function CharacterList() {
     <div className="character-list">
   
       <Header>Rick &amp; Morty Characters</Header>
-      {/* <SearchForm callback={changeTerm} /> */}
       <Container>
       {characters.map(character => (
         <CharacterCard key={character.id} character={character}/>

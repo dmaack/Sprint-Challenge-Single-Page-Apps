@@ -27,7 +27,7 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ]  Explain benefit(s) using `client-side routing`?
 
-> Answer:
+> Answer:  You don’t have to reload the page everytime the data changes, can write a mulitpage application that all comes at the same time. Once we have the page loaded we can click around and change things fast we rarely ask the server for more html and JS. 
 
 ## Project Set Up
 
